@@ -32,7 +32,6 @@ Node* middlenode(Node *head)
 {
     if(left==NULL)
         return right;
-
     if(right==NULL)
         return left;
 
@@ -54,16 +53,13 @@ Node* mergesort(Node *head)
         return head;
 
     Node *mid=middlenode(head);
+    Node *second=mid->next; //Second node starting
+    mid->next=NULL;  //Break into two halves
+	//Recursively sorting
+    Node *left=mergesort(head); //Left node
+    Node *right=mergesort(second);  //Right node
 
-    Node *second=mid->next;
-
-    mid->next=NULL;
-
-    Node *left=mergesort(head);
-
-    Node *right=mergesort(second);
-
-    return merge(left,right);
+    return merge(left,right);//Merging
 }
  int main()
  {
